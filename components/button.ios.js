@@ -24,13 +24,28 @@ var ButtonTop = React.createClass({
          <Button  onPress = {this.props.handleUrban} title = 'Urban'/>  
         </View>
 
+        <Text>
+          {this.props.info}
+        </Text>
+
         <View style = {styles.thesaurus}>
          <Button  onPress = {this.props.handleChange} title = 'Thesaurus'/>  
         </View> 
 
         <View style = {styles.syllables}>
-         <Button  onPress = {this.props.handleChange} title = 'Syllables'/>  
+         <Button  onPress = {this.props.handleSyllables} title = 'Syllables'/>  
         </View>
+
+        <Text>
+          {this.props.syllables}
+        </Text>
+
+        <View style = {styles.rhyming}>
+         <Button  onPress = {this.props.handleRhymes} title = 'Rhyming'/>  
+        </View>
+        <Text>
+          {this.props.rhymes}
+        </Text>
 
       </View>
 
@@ -74,6 +89,14 @@ const styles = StyleSheet.create({
     // marginBottom: 5,
     height: 50,
     backgroundColor: 'lightgreen',
+  }, 
+
+  rhyming: {
+    // textAlign: 'center',
+    // color: '#333333',
+    // marginBottom: 5,
+    height: 50,
+    backgroundColor: 'green',
   },
 });
 

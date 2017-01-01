@@ -16,7 +16,9 @@ var AwesomeProject = React.createClass({
   getInitialState(){
     return({
       word:'',
-      definition:''
+      definition:'',
+      syllables: null,
+      rhymes: ''
 
     })
    },
@@ -34,20 +36,55 @@ var AwesomeProject = React.createClass({
     fetch("https://api.urbandictionary.com/v0/define?term=" + this.state.word)
     .then((response) => response.json())
     .then((response) => {
-      var final = response.list[0].definition 
+      console.log(response)
+      var final = response.list[Math.floor((Math.random() * 10) + 1)].definition 
       this.setState({info:final})
       console.log(this.state.info)
     })
 
   }, 
 
+  handleRhymes(event){
+    event.preventDefault()
+    console.log(this.state.word)
+    fetch("https://api.datamuse.com/words?rel_rhy=" + this.state.word)
+    .then((response) => response.json())
+    .then((response) => {
+      var final = response[Math.floor((Math.random() * 10) + 1)].word
+      console.log(final)
+      this.setState({rhymes: final})
+      
+    })
+
+
+  },
+
+  handleSyllables(event){
+    // var key  = "3c443f0f-94fe-4819-8b00-6e2e1e2f3cdd"
+    event.preventDefault()
+    console.log(this.state.word)
+    fetch("https://api.datamuse.com/words?rel_rhy=" + this.state.word)
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(response)
+      var final = response[0].numSyllables
+      this.setState({syllables: final})
+      console.log(final)
+      // var syll = response
+      // this.setState({syllables:syll})
+      // console.log(this.state.syllables)
+    })
+
+  }, 
+
+          // {this.state.info}
+          // {this.state.syllables}
   render() {
     return (
       <View>
         <Input handleChange = {this.handleChange}/>
-        <ButtonTop handleChange ={this.handleChange} handleUrban = {this.handleUrban}/>
+        <ButtonTop rhymes = {this.state.rhymes} syllables = {this.state.syllables} info = {this.state.info} handleChange ={this.handleChange} handleUrban = {this.handleUrban} handleRhymes = {this.handleRhymes} handleSyllables = {this.handleSyllables}/>
         <Text>
-          {this.state.info}
         </Text>
 
       </View>
