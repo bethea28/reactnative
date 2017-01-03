@@ -40,7 +40,7 @@ var AwesomeProject = React.createClass({
     .then((response) => response.json())
     .then((response) => {
       console.log(response)
-      var final = response.list[Math.floor((Math.random() * 10) + 1)].definition 
+      var final = response.list[Math.floor((Math.random() * 4) + 1)].definition 
       this.setState({info:final})
       console.log(this.state.info)
     })
@@ -68,7 +68,7 @@ var AwesomeProject = React.createClass({
     fetch("https://words.bighugelabs.com/api/2/9b0e7781308c60fd33d5fe868258c426/" + this.state.word + "/json")
     .then((response) => response.json())
     .then((response) => {
-      var final = response.noun.syn[Math.floor((Math.random() * 5) + 1)] 
+      var final = response.noun.syn[Math.floor((Math.random() * 2) + 1)] 
       this.setState({syn:final})
       console.log(this.state.syn)
     })
@@ -110,11 +110,15 @@ var AwesomeProject = React.createClass({
       <View>
 
 
-        <Text style = {{height:20}}>
+        <Text style = {{height:100}}>
+        </Text>
+
+
+        <Text style = {{fontSize: 25, fontFamily: "AcademyEngravedLetPlain", textAlign: "center", height:20}}>
           A-DDICTION-ARY
         </Text>
 
-        <Text style = {{height:100}}>
+        <Text style = {{height:10}}>
         </Text>
 
         <Input handleChange = {this.handleChange}/>

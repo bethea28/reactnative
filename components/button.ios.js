@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -20,39 +19,37 @@ var ButtonTop = React.createClass({
         <View style = {styles.webster}>
          <Button  onPress = {this.props.handleWebster} title = 'Webster'/>  
         </View>
-
         <Text style = {{textAlign: "center"}}>
           {this.props.webster}
         </Text>
 
+
         <View style = {styles.urban}>
          <Button  onPress = {this.props.handleUrban} title = 'Urban'/>  
         </View>
-
         <Text style = {{textAlign: "center"}}>
           {this.props.info}
+        </Text>
+
+
+        <View style = {styles.syllables}>
+         <Button  onPress = {this.props.handleSyllables} title = 'Syllables'/>  
+        </View>
+        <Text style = {{textAlign: "center"}}>
+          {this.props.syllables}
         </Text>
 
         <View style = {styles.thesaurus}>
          <Button  onPress = {this.props.handleSyn} title = 'Thesaurus'/>  
         </View> 
-
         <Text style = {{textAlign: "center"}}>
           {this.props.syn}
         </Text>
 
-        <View style = {styles.syllables}>
-         <Button  onPress = {this.props.handleSyllables} title = 'Syllables'/>  
-        </View>
-
-        <Text style = {{textAlign: "center"}}>
-          {this.props.syllables}
-        </Text>
 
         <View style = {styles.rhyming}>
          <Button  onPress = {this.props.handleRhymes} title = 'Rhyming'/>  
         </View>
-
         <Text style = {{textAlign: "center"}}>
           {this.props.rhymes }
         </Text>
@@ -62,7 +59,6 @@ var ButtonTop = React.createClass({
     );
   }
 })
-       
 
 
 const styles = StyleSheet.create({
@@ -79,7 +75,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
     // alignItems: 'center',
     height: 50,
-    backgroundColor: 'yellow',
+    backgroundColor: 'yellow'
   },
   urban: {
     // fontSize: 20,
