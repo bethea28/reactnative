@@ -14,6 +14,8 @@ const ButtonTop = (props) => {
         // <Text style = {{height: -30, borderColor: 'red', borderWidth: 2, fontSize: 20, top: 10, textAlign: "center"}}> {props.webster} 
         // </Text>
 
+        console.log('test', props.webster)
+
   return (
     <View style ={styles.main}>  
     
@@ -69,7 +71,7 @@ const ButtonTop = (props) => {
       </View>
         
         {/*Rendering of dictionary results */}
-      {<View>  
+      <View>  
         <Text style = {{height: -30,  fontSize: 20, top: 10, textAlign: "center"}}> {props.webster} 
         </Text>   
         <Text style = {{height: -30, fontSize: 20, top: 10, textAlign: "center"}}> {props.urban} 
@@ -84,7 +86,7 @@ const ButtonTop = (props) => {
        
         <Text style = {{ height: -30, fontSize: 20, top: 10, textAlign: "center"}}> {props.rhymes} 
         </Text>
-      </View>}
+      </View>
           
         
     </View>

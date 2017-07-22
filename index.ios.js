@@ -26,8 +26,8 @@ class AwesomeProject extends Component {
       syn: '',
       pic:'',
       showButtons: true,
-      showPic: false && props.showPic,
-      urban: props.urban
+      showPic: false, 
+      urban: ''
       
     }
     this.handleChange = this.handleChange.bind(this)
@@ -64,10 +64,12 @@ class AwesomeProject extends Component {
     .then((response) => response.json())
     .then((response) => {
       console.log(response)
-      let final = response.list[Math.floor((Math.random() * 4 ) + 1)].definition 
-      this.setState({info:final})
-      console.log(this.state.info)
+      console.log(response.list[1].definition)
+      // let final = response.list[Math.floor((Math.random() * 4 ) + 1)].definition 
+      let final = response.list[1].definition
+      this.setState({urban: final})
     })
+      console.log(this.state.urban)
 
   }
 
@@ -161,6 +163,7 @@ class AwesomeProject extends Component {
   } 
 
   render() {
+    console.log(this.state.urban)
     return (
       <View style = {{backgroundColor: 'blue'}}>
 
@@ -171,9 +174,9 @@ class AwesomeProject extends Component {
 
         <Text style = {{top: -39, fontWeight: 'bold', fontSize: 25, fontFamily: "AcademyEngravedLetPlain", textAlign: "center", height:20}}>
           A-PICTION-ARY
+          
         </Text>
 
-          {this.state.urban}
         <Text style = {{height:10}}>
         </Text>
 
@@ -182,7 +185,7 @@ class AwesomeProject extends Component {
         <Text style = {{height:20}}>
         </Text>
 
-        {this.state.showButtons ? <ButtonTop pics = {this.pictureApi} syn = {this.state.syn} handleSyn = {this.handleSyn} webster = {this.state.webster} handleWebster = {this.handleWebster} rhymes = {this.state.rhymes} syllables = {this.state.syllables} info = {this.state.info} handleChange ={this.handleChange} handleUrban = {this.handleUrban} handleRhymes = {this.handleRhymes} handleSyllables = {this.handleSyllables}/> : <Text> '' </Text>}
+        {this.state.showButtons ? <ButtonTop urban = {this.state.urban} pics = {this.pictureApi} syn = {this.state.syn} handleSyn = {this.handleSyn} webster = {this.state.webster} handleWebster = {this.handleWebster} rhymes = {this.state.rhymes} syllables = {this.state.syllables} info = {this.state.info} handleChange ={this.handleChange} handleUrban = {this.handleUrban} handleRhymes = {this.handleRhymes} handleSyllables = {this.handleSyllables}/> : <Text> '' </Text>}
 
         <View style = {{ justifyContent: "center", alignItems: "center", borderRadius: 10, width: 300, height: 300}}>
 
