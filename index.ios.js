@@ -187,6 +187,14 @@ class AwesomeProject extends Component {
 
         {this.state.showButtons ? <ButtonTop urban = {this.state.urban} pics = {this.pictureApi} syn = {this.state.syn} handleSyn = {this.handleSyn} webster = {this.state.webster} handleWebster = {this.handleWebster} rhymes = {this.state.rhymes} syllables = {this.state.syllables} info = {this.state.info} handleChange ={this.handleChange} handleUrban = {this.handleUrban} handleRhymes = {this.handleRhymes} handleSyllables = {this.handleSyllables}/> : <Text> '' </Text>}
 
+
+         
+
+        {(this.state.urban|| this.state.webster|| this.state.syn|| this.state.syllables|| this.state.rhymes || this.state.pic) ?  <Text>'' </Text> : <Image
+          style={{borderRadius: 10, position: 'relative', top: -100, right: -70,  width: 225, height: 225}}
+          source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+        />}
+
         <View style = {{ justifyContent: "center", alignItems: "center", borderRadius: 10, width: 300, height: 300}}>
 
           {!this.state.showPic ?  <Text>'' </Text> : <Image onPress = {this.showButtons} style = {styles.image} source={{uri: this.state.pic ? this.state.pic : "  this.state.pic"}}/> }
