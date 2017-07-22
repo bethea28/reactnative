@@ -6,63 +6,98 @@ import {
   Text,
   View,
   Image,
-  Button
+  Button,
+  TouchableHighlight
 } from 'react-native';
 
-var ButtonTop = React.createClass({
+const ButtonTop = (props) => {
+        // <Text style = {{height: -30, borderColor: 'red', borderWidth: 2, fontSize: 20, top: 10, textAlign: "center"}}> {props.webster} 
+        // </Text>
 
-  render() {
-    return (
+  return (
     <View style ={styles.main}>  
+    
+        {/*Rendering of buttons */}
       <View >
+        <View style = {{ flexDirection: "row", justifyContent: 'center'}}>
+          <TouchableHighlight>
+            <View style = {styles.webster}>
+              <Button  onPress = {props.handleWebster} title = 'Webster'/>  
+            </View>
+          </TouchableHighlight>
 
-        <View style = {styles.webster}>
-         <Button  onPress = {this.props.handleWebster} title = 'Webster'/>  
+          <TouchableHighlight>
+            <View style = {styles.urban}>
+             <Button  onPress = {props.handleUrban} title = 'Urban'/>  
+            </View>
+          </TouchableHighlight>
         </View>
-        <Text style = {{textAlign: "center"}}>
-          {this.props.webster}
-        </Text>
 
+        <View style = {{ flexDirection: "row", justifyContent: 'center'}}>
 
-        <View style = {styles.urban}>
-         <Button  onPress = {this.props.handleUrban} title = 'Urban'/>  
+          <TouchableHighlight>
+            <View style = {styles.syllables}>
+             <Button  onPress = {props.handleSyllables} title = 'Syllables'/>  
+            </View>
+          </TouchableHighlight>
+
+          <TouchableHighlight>
+            <View style = {styles.thesaurus}>
+             <Button  onPress = {props.handleSyn} title = 'Thesaurus'/>  
+            </View> 
+          </TouchableHighlight>
         </View>
-        <Text style = {{textAlign: "center"}}>
-          {this.props.info}
-        </Text>
 
 
-        <View style = {styles.syllables}>
-         <Button  onPress = {this.props.handleSyllables} title = 'Syllables'/>  
+        <View style = {{ flexDirection: "row", justifyContent: 'center'}}>
+
+          <TouchableHighlight>
+            <View style = {styles.rhyming}>
+             <Button  onPress = {props.handleRhymes} title = 'Rhyming'/>  
+            </View>
+          </TouchableHighlight>
+       
+
+          <TouchableHighlight>
+            <View style = {styles.pics}>
+             <Button  onPress = {props.pics} title = 'Picture'/>  
+            </View>
+          </TouchableHighlight>
+
         </View>
-        <Text style = {{textAlign: "center"}}>
-          {this.props.syllables}
-        </Text>
-
-        <View style = {styles.thesaurus}>
-         <Button  onPress = {this.props.handleSyn} title = 'Thesaurus'/>  
-        </View> 
-        <Text style = {{textAlign: "center"}}>
-          {this.props.syn}
-        </Text>
-
-
-        <View style = {styles.rhyming}>
-         <Button  onPress = {this.props.handleRhymes} title = 'Rhyming'/>  
-        </View>
-        <Text style = {{textAlign: "center"}}>
-          {this.props.rhymes }
-        </Text>
 
       </View>
+        
+        {/*Rendering of dictionary results */}
+      {<View>  
+        <Text style = {{height: -30,  fontSize: 20, top: 10, textAlign: "center"}}> {props.webster} 
+        </Text>   
+        <Text style = {{height: -30, fontSize: 20, top: 10, textAlign: "center"}}> {props.urban} 
+        </Text>
+
+        <Text style = {{ height: -30, fontSize: 20, top: 10, textAlign: "center"}}> {props.syllables} 
+        </Text>
+        <Text style = {{height: -30, fontSize: 20, top: 10, textAlign: "center"}}> 
+           {props.syn} 
+
+        </Text>
+       
+        <Text style = {{ height: -30, fontSize: 20, top: 10, textAlign: "center"}}> {props.rhymes} 
+        </Text>
+      </View>}
+          
+        
     </View>
-    );
-  }
-})
+  );
+    
+}
 
 
 const styles = StyleSheet.create({
   main: {
+    // display: 'block',
+    position: "relative",
+    top: -25
     // flex: 1,
     // flexDirection: "row",
     // // justifyContent: 'center'
@@ -105,7 +140,15 @@ const styles = StyleSheet.create({
     // marginBottom: 5,
     height: 50,
     backgroundColor: 'green',
-  },
+  }, 
+
+  pics: {
+    // textAlign: 'center',
+    // color: '#333333',
+    // marginBottom: 5,
+    height: 50,
+    backgroundColor: 'purple',
+  }
 });
 
-module.exports = ButtonTop
+export default ButtonTop

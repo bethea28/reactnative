@@ -14,140 +14,166 @@ import {
   Image
 } from 'react-native';
 
-var AwesomeProject = React.createClass({
-  getInitialState(){
-    return({
+class AwesomeProject extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
       word:'',
       definition:'',
       syllables: null,
       rhymes: '',
       webster: '',
       syn: '',
-      pic:''
-
-    })
-   },
+      pic:'',
+      showButtons: true,
+      showPic: false && props.showPic,
+      urban: props.urban
+      
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleUrban = this.handleUrban.bind(this)
+    this.pictureApi = this.pictureApi.bind(this)
+    this.handleWebster = this.handleWebster.bind(this)
+    this.handleSyn = this.handleSyn.bind(this)
+    this.handleRhymes = this.handleRhymes.bind(this)
+    this.handleSyllables = this.handleSyllables.bind(this)
+    this.showButtons = this.showButtons.bind(this)
+    
+   }
   
   handleChange(event){
       // console.log(event)
     this.setState({word:event})
     // this.pictureApi()
     // console.log(this.state.word)
-  }, 
+  }
+
+  showButtons(){
+    this.setState({display: true})
+    console.log(this.state.display)
+  }
 
   handleUrban(event){
-    // var key  = "3c443f0f-94fe-4819-8b00-6e2e1e2f3cdd"
+    // let key  = "3c443f0f-94fe-4819-8b00-6e2e1e2f3cdd"
     event.preventDefault()
-    this.pictureApi()
+    this.setState({showPic: false})
+
 
     console.log(this.state.word)
     fetch("https://api.urbandictionary.com/v0/define?term=" + this.state.word)
     .then((response) => response.json())
     .then((response) => {
       console.log(response)
-      var final = response.list[Math.floor((Math.random() * 4 ) + 1)].definition 
+      let final = response.list[Math.floor((Math.random() * 4 ) + 1)].definition 
       this.setState({info:final})
       console.log(this.state.info)
     })
 
-  }, 
+  }
 
   pictureApi(event){
-    // var key  = "3c443f0f-94fe-4819-8b00-6e2e1e2f3cdd"
+    // let key  = "3c443f0f-94fe-4819-8b00-6e2e1e2f3cdd"
     // event.preventDefault()
     console.log(this.state.word)
     fetch("https://pixabay.com/api/?key=4172115-92e671ee61b211fd29dba7c9a&q=" + this.state.word + "&image_type=photo&pretty=true")
     .then((response) => response.json())
     .then((response) => {
-      var final = response.hits[0].webformatURL
+      console.log(response)
+      let final = response.hits[0].userImageURL
       console.log(final)
       this.setState({pic: final})
-      // var final = response.list[Math.floor((Math.random() * 4 ) + 1)].definition 
+      this.setState({showPic: true, webster: null, urban: null, syn: null, syllables: null, rhymes: null})
+      // let final = response.list[Math.floor((Math.random() * 4 ) + 1)].definition 
       // this.setState({info:final})
       // console.log(this.state.info)
     })
 
-  }, 
+  }
 
   handleWebster(event){
-    // var key  = "3c443f0f-94fe-4819-8b00-6e2e1e2f3cdd"
+    // let key  = "3c443f0f-94fe-4819-8b00-6e2e1e2f3cdd"
+
     event.preventDefault()
-    this.pictureApi()
+    this.setState({showPic: false})
 
     console.log(this.state.word)
     fetch("https://api.pearson.com/v2/dictionaries/entries?headword=" + this.state.word)
     .then((response) => response.json())
     .then((response) => {
-      var final = response.results[2].senses[0].definition[0]
+      let final = response.results[2].senses[0].definition[0]
       // console.log(response.results[2].senses[0].definition[0])
       console.log(final)
       this.setState({webster:final})
       // console.log(this.state.info)
     })
-  },  
+    // this.pictureApi()
+  }
 
-    handleSyn(event){
+  handleSyn(event){
     event.preventDefault()
-    this.pictureApi()
+    this.setState({showPic: false})
+
 
     console.log(this.state.word)
     fetch("https://words.bighugelabs.com/api/2/9b0e7781308c60fd33d5fe868258c426/" + this.state.word + "/json")
     .then((response) => response.json())
     .then((response) => {
-      var final = response.noun.syn[Math.floor((Math.random() * 2) + 1)] 
+      let final = response.noun.syn[Math.floor((Math.random() * 2) + 1)] 
       this.setState({syn:final})
       console.log(this.state.syn)
     })
 
-  }, 
+  }
 
   handleRhymes(event){
     event.preventDefault()
-    this.pictureApi()
+    this.setState({showPic: false})
 
     console.log(this.state.word)
     fetch("https://api.datamuse.com/words?rel_rhy=" + this.state.word)
     .then((response) => response.json())
     .then((response) => {
-      var final = response[Math.floor((Math.random() * 10) + 1)].word
+      let final = response[Math.floor((Math.random() * 10) + 1)].word
       console.log(final)
       this.setState({rhymes: final})
       
     })
 
 
-  },
+  }
 
   handleSyllables(event){
-    // var key  = "3c443f0f-94fe-4819-8b00-6e2e1e2f3cdd"
+    // let key  = "3c443f0f-94fe-4819-8b00-6e2e1e2f3cdd"
     event.preventDefault()
-    this.pictureApi()
+    this.setState({showPic: false})
+
 
     console.log(this.state.word)
     fetch("https://api.datamuse.com/words?rel_rhy=" + this.state.word)
     .then((response) => response.json())
     .then((response) => {
       console.log(response)
-      var final = response[0].numSyllables
+      let final = response[0].numSyllables
       this.setState({syllables: final})
       console.log(final)
     })
 
-  }, 
+  } 
 
   render() {
     return (
-      <View>
+      <View style = {{backgroundColor: 'blue'}}>
 
 
         <Text style = {{height:100}}>
         </Text>
 
 
-        <Text style = {{fontSize: 25, fontFamily: "AcademyEngravedLetPlain", textAlign: "center", height:20}}>
+        <Text style = {{top: -39, fontWeight: 'bold', fontSize: 25, fontFamily: "AcademyEngravedLetPlain", textAlign: "center", height:20}}>
           A-PICTION-ARY
         </Text>
 
+          {this.state.urban}
         <Text style = {{height:10}}>
         </Text>
 
@@ -156,18 +182,40 @@ var AwesomeProject = React.createClass({
         <Text style = {{height:20}}>
         </Text>
 
-        <ButtonTop syn = {this.state.syn} handleSyn = {this.handleSyn} webster = {this.state.webster} handleWebster = {this.handleWebster} rhymes = {this.state.rhymes} syllables = {this.state.syllables} info = {this.state.info} handleChange ={this.handleChange} handleUrban = {this.handleUrban} handleRhymes = {this.handleRhymes} handleSyllables = {this.handleSyllables}/>
+        {this.state.showButtons ? <ButtonTop pics = {this.pictureApi} syn = {this.state.syn} handleSyn = {this.handleSyn} webster = {this.state.webster} handleWebster = {this.handleWebster} rhymes = {this.state.rhymes} syllables = {this.state.syllables} info = {this.state.info} handleChange ={this.handleChange} handleUrban = {this.handleUrban} handleRhymes = {this.handleRhymes} handleSyllables = {this.handleSyllables}/> : <Text> '' </Text>}
 
         <View style = {{ justifyContent: "center", alignItems: "center", borderRadius: 10, width: 300, height: 300}}>
 
-          <Image style = {{flex: 1, borderRadius: 5, width: 300, height: 300}} source={{uri: this.state.pic == null ? this.state.pic : this.state.pic}}/>
-
+          {!this.state.showPic ?  <Text>'' </Text> : <Image onPress = {this.showButtons} style = {styles.image} source={{uri: this.state.pic ? this.state.pic : "  this.state.pic"}}/> }
+        </View>
+        <View>
+          <Text style = {{textAlign: "center"}}>
+          </Text>
         </View>
 
       </View>
     );
   }
+}
+            // {this.state.webster}
+
+const styles = StyleSheet.create({
+  image: {
+    flex: 1, 
+    borderWidth: 2,
+    borderColor: 'red',
+
+    // position: "absolute",
+    borderRadius: 5,
+    width: 300, 
+    height: -500,
+    left: 35,
+    top: -115,
+
+  }
+
 })
+
 
 
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);

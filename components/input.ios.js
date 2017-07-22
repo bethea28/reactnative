@@ -8,41 +8,40 @@ import {
   View
 } from 'react-native';
 
-var Input = React.createClass({
+const Input = (props) => {
 
-  render() {
-    return (
+  return (
 
-        <TextInput
-        type = 'button'
-        style={{height: 40, borderColor: 'orange', borderWidth: 1, }}
-        onChangeText = {this.props.handleChange} 
-        // value={this.state.text}
-        editable = {true}
-        />
-         
+    <TextInput
+    type = 'button'
+    style={{ color: "white", height: 40, borderColor: 'orange', borderWidth: 2, top: -25}}
+    onChangeText = {props.handleChange} 
+    // value={state.text}
+    editable = {true}
+    />
      
-    );
-  }
-})
+   
+  );
+  
+}
 
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    // justifyContent: 'center',
-    // alignItems: 'stretch',
-    height:40,
+    height: 40,
     borderColor: 'orange',
     borderWidth: 1,
     backgroundColor: 'yellow'
 
   },
+
   welcome: {
     fontSize: 20,
     backgroundColor: 'green',
     textAlign: 'center',
     margin: 10,
   },
+
   instructions: {
     backgroundColor: 'blue',
     textAlign: 'center',
@@ -51,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = Input
+export default Input
