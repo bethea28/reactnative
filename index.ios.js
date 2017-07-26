@@ -3,8 +3,6 @@
 import React, { Component } from 'react';
 import Input from './components/input.ios.js'
 import ButtonTop from './components/button.ios.js'
-// import Shake from './components/shake.ios.js'
-import RefreshableList from './components/button.ios.js'
 import {
   AppRegistry,
   StyleSheet,
@@ -205,9 +203,8 @@ class AwesomeProject extends Component {
           <Text style = {{textAlign: "center"}}>
           </Text>
         </View>
-        <RefreshableList />
 
-        {/* This is the shake feature// when activated it clears screen back to default*/}
+        
 
 
 
@@ -215,8 +212,6 @@ class AwesomeProject extends Component {
     );
   }
 }
-
-        // <Shake syn = {this.state.syllables} webster = {this.state.webster} urban = {this.state.urban} rhymes = {this.state.rhymes} syllables = {this.state.syllables} />
 
 
 
@@ -232,7 +227,7 @@ const styles = StyleSheet.create({
     width: 300, 
     height: -500,
     left: 35,
-    top: -115,
+    top: -155,
 
   }
 
