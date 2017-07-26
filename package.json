@@ -21,6 +21,8 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-native": "0.39.2",
+    "react-native-shake-event": "^3.0.0",
+    "react-native-shake-event-ios": "^1.0.3",
     "sequelize": "^3.28.0",
     "sequelize-cli": "^2.5.1",
     "webpack": "^1.14.0"

@@ -7,7 +7,8 @@ import {
   View,
   Image,
   Button,
-  TouchableHighlight
+  TouchableHighlight,
+  ScrollView
 } from 'react-native';
 
 const ButtonTop = (props) => {
@@ -20,6 +21,7 @@ const ButtonTop = (props) => {
     <View style ={styles.main}>  
     
         {/*Rendering of buttons */}
+      <ScrollView contentContainerStyle={styles.contentContainer}>
       <View >
         <View style = {{ flexDirection: "row", justifyContent: 'center'}}>
           <TouchableHighlight>
@@ -87,6 +89,7 @@ const ButtonTop = (props) => {
         <Text style = {{ height: -30, fontSize: 20, top: 10, textAlign: "center"}}> {props.rhymes} 
         </Text>
       </View>
+      </ScrollView>
           
         
     </View>
@@ -96,6 +99,9 @@ const ButtonTop = (props) => {
 
 
 const styles = StyleSheet.create({
+  contentContainer: {
+    paddingVertical: 20
+  },
   main: {
     // display: 'block',
     position: "relative",
